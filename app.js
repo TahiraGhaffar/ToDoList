@@ -191,6 +191,13 @@ app.get("/", function(req,res){
    res.render("about");
   });
 
-  app.listen(3000, function(){
-    console.log("Server is running on port 3000");
+
+  let port = process.env.PORT; //means let port equal to what HEROKU has setup
+  if (port == null || port == "") { //if heroku hasn't set one, then we gonna use our local one i.e, 3000
+    port = 3000;
+  }
+  app.listen(port);
+
+  app.listen(port, function(){
+    console.log("Server has started successfully");
 });
