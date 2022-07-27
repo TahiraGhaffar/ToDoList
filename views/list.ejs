@@ -1,0 +1,31 @@
+<%- include("header") -%>  <!-- when want to put 'Javascript ocde inside 'HTML' file , use "ejs" templating -->
+
+<div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+</div>
+ 
+    
+<div class="box">
+
+    <% newListItems.forEach(function(item){ %>
+        <form action="/delete" method="post">
+        <div class="item">
+            <input type="checkbox" name = "checkbox" value= <%=item._id %> onchange= "this.form.submit()">
+            <!-- on checking the checkbox, post request gets triggered, '/delete' will be triggered in app.js -->
+            <p> <%= item.name %> </p> <!-- to write "js" code inside "html page" use 'ejs tag' -->
+        </div>
+        </form>
+    <% }) %>
+    <!-- <% for(let i=0; i < newListItems.length; i++){ %>
+        
+        
+     <% } %> -->
+
+     <form class="item" action="/" method="post"> <!-- "/" takes to HOME ROUTE PAGE -->
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="list" value=<%= listTitle %>> +</button> <!-- clicking submit button TRIGGERS post request-->
+    </form>
+
+</div>
+    
+<%- include("footer") -%>
